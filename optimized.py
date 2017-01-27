@@ -1,5 +1,6 @@
 import json
 import unittest
+from chainmap import ChainMap
 
 #key is the type of drink
 #value is tuple
@@ -54,6 +55,7 @@ def optimize(input_filename):
 	offset = 0 
 
 	retData = []
+	metricData = []
 	b1_time = 0
 	b2_time = 0
 
@@ -79,6 +81,13 @@ def optimize(input_filename):
 			profit += drink_map[barista1_order['type']][1]
 			num_of_order += 1
 
+			#create a dictionary that contains input and output information to be written to fifo_metric_output
+		
+			barista1_order['barista_id'] = output['barista_id']
+			barista1_order['order_id'] = output['order_id']
+			barista1_order['start_time'] = output['start_time']
+			metricData.append(barista1_order)
+
 		if (b2_time + b2_order_time <= 100):
 			b2_time, output = baristaProcess(barista2_order, 2, b2_time)
 			retData.append(output)
@@ -86,11 +95,22 @@ def optimize(input_filename):
 			profit += drink_map[barista2_order['type']][1]
 			num_of_order += 1
 
+			#create a dictionary that contains input and output information to be written to fifo_metric_output
+			
+			barista2_order['barista_id'] = output['barista_id']
+			barista2_order['order_id'] = output['order_id']
+			barista2_order['start_time'] = output['start_time']
+			metricData.append(barista2_order)
+	
+	with open('optimized_metric_output' + '.json', 'w') as outfile:
+		json.dump(metricData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
+	
+
 	with open('output_optimized' + '.json', 'w') as outfile:
 		json.dump(retData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
 	#return 'profit: ' + str(profit), 'num of order: ' +  str(num_of_order), 'percent of order: ' + str(num_of_order / float(len(data))), 'average wait_time: ' + str(wait_time / float(num_of_order)), 'times both baristas available at same time: ' + str(barista_avail)
 	return str(profit), str(num_of_order), str(num_of_order / float(len(data))), str(wait_time / float(num_of_order)), str(barista_avail)
-print(optimize('input'))
+
 
 class TestProcess(unittest.TestCase):
 
@@ -297,4 +317,5 @@ class TestOptimize(unittest.TestCase):
 
 
 if __name__ == '__main__':
-	unittest.main()
+	#unittest.main()
+	print(optimize('input'))

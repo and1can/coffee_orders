@@ -1,6 +1,7 @@
 import json
 import unittest
 from pprint import pprint
+from chainmap import ChainMap
 
 #key is the type of drink
 #value is tuple
@@ -64,6 +65,7 @@ def calcWaitTime(i, o):
 def simulateCafeDay(input_filename):
 
 	retdata = []
+	metricData = []
 	b1_time = 0
 	b2_time = 0
 
@@ -83,6 +85,13 @@ def simulateCafeDay(input_filename):
 			if (b1_time <= 100 and (curr_input['order_time'] <= 100)):
 				b1_time, output = baristaProcess(curr_input, barista, b1_time)
 				retdata.append(output)
+				#create a dictionary that contains input and output information to be written to fifo_metric_output
+				curr_input['barista_id'] = output['barista_id']
+				curr_input['order_id'] = output['order_id']
+				curr_input['start_time'] = output['start_time']
+				metricData.append(curr_input)
+
+				#calculating overall metrics of algorithm
 				wait_time += calcWaitTime(curr_input, output)
 				profit += drink_map[curr_input['type']][1]
 				num_of_order += 1
@@ -90,17 +99,28 @@ def simulateCafeDay(input_filename):
 			if (b2_time <= 100 and (curr_input['order_time'] <= 100)): 
 				b2_time, output = baristaProcess(curr_input, barista, b2_time)
 				retdata.append(output)
+
+				#create a dictionary that contains input and output information to be written to fifo_metric_output
+				curr_input['barista_id'] = output['barista_id']
+				curr_input['order_id'] = output['order_id']
+				curr_input['start_time'] = output['start_time']
+				metricData.append(curr_input)
+
+				#calculating overall metrics of algorithm
 				wait_time += calcWaitTime(curr_input, output)
 				profit += drink_map[curr_input['type']][1]
 				num_of_order += 1
+				
 			
 	with open('output_fifo' + '.json', 'w') as outfile:
 		json.dump(retdata, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
+
+	with open('fifo_metric_output' + '.json', 'w') as outfile:
+		json.dump(metricData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
 	return profit, num_of_order, (num_of_order / float(len(data))), \
 	(wait_time / float(num_of_order)), (barista_avail)
 	#return 'profit: ' + str(profit), 'num of order: ' +  str(num_of_order), 'percent of order: ' + str(num_of_order / float(len(data))), 'average wait_time: ' + str(wait_time / float(num_of_order)), 'times both baristas available at same time: ' + str(barista_avail)
 
-#print(simulateCafeDay('input'))
 
 class TestBaristaChosen(unittest.TestCase):
 	
@@ -336,4 +356,6 @@ class TestSimulateCafeDay(unittest.TestCase):
 		self.assertEquals(average_wait_time, 16/float(3))
 	
 if __name__ == '__main__':
-	unittest.main()
+	#unittest.main()
+
+	print(simulateCafeDay('input'))
