@@ -390,6 +390,6 @@ class TestSimulateCafeDay(unittest.TestCase):
 	
 if __name__ == '__main__':
 	print(simulateCafeDay('input'))
-	unittest.main()
+	#unittest.main()
 
 	

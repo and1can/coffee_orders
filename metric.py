@@ -1,5 +1,7 @@
 import json
 import unittest
+from fifo import simulateCafeDay
+from optimized import optimize
 
 
 def metricCalc(file_name, input_name):
@@ -65,7 +67,7 @@ def metricCalc(file_name, input_name):
 	latte_percent_comp = 0
 	affogato_percent_comp = 0
 	
-	
+	print('tea_comp: ', tea_count, 'latte_comp: ', latte_count, 'affogato_comp: ', affogato_count)
 	#calculate the average percentage of orders completed fore ach
 	#type of drink. also make sure not to divide by zero 
 	if (tea_total != 0):
@@ -76,6 +78,8 @@ def metricCalc(file_name, input_name):
 
 	if (affogato_total != 0):
 		affogato_percent_comp = affogato_count / float(affogato_total)
+
+	print('tea_total: ', tea_total, 'latte_total: ', latte_total, 'affogato_total', affogato_total)
 
 	return (tea_avg_wait, latte_avg_wait, affogato_avg_wait, tea_percent_comp, \
 		latte_percent_comp, affogato_percent_comp)
@@ -123,5 +127,10 @@ class TestMetricCalc(unittest.TestCase):
 if __name__ == '__main__':
 	#unittest.main()
 
+	print('fifo metric: ')
+	simulateCafeDay('input')
+	print(metricCalc('fifo_metric_output', 'input'))
+	optimize('input')
 	print('optimized metric: ')
 	print(metricCalc('optimized_metric_output', 'input'))
+

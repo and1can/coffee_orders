@@ -1,5 +1,6 @@
 import json
 import unittest
+from chainmap import ChainMap
 
 #key is the type of drink
 #value is tuple
@@ -63,6 +64,7 @@ def calcWaitTime(i, o):
 def simulateCafeDay(input_filename):
 
 	retdata = []
+	metricData = []
 	b1_time = 0
 	b2_time = 0
 
@@ -73,7 +75,6 @@ def simulateCafeDay(input_filename):
 	with open(input_filename + '.json') as data_file:
 		data = json.load(data_file)
 
-	print('total orders: ', len(data))
 	for i in range(len(data)):
 		curr_input = data[i]
 		barista = getBarista(b1_time, b2_time)
@@ -83,6 +84,13 @@ def simulateCafeDay(input_filename):
 			if (b1_time <= 100 and (curr_input['order_time'] <= 100)):
 				b1_time, output = baristaProcess(curr_input, barista, b1_time)
 				retdata.append(output)
+				#create a dictionary that contains input and output information to be written to fifo_metric_output
+				curr_input['barista_id'] = output['barista_id']
+				curr_input['order_id'] = output['order_id']
+				curr_input['start_time'] = output['start_time']
+				metricData.append(curr_input)
+
+				#calculating overall metrics of algorithm
 				wait_time += calcWaitTime(curr_input, output)
 				profit += drink_map[curr_input['type']][1]
 				num_of_order += 1
@@ -90,15 +98,28 @@ def simulateCafeDay(input_filename):
 			if (b2_time <= 100 and (curr_input['order_time'] <= 100)): 
 				b2_time, output = baristaProcess(curr_input, barista, b2_time)
 				retdata.append(output)
+
+				#create a dictionary that contains input and output information to be written to fifo_metric_output
+				curr_input['barista_id'] = output['barista_id']
+				curr_input['order_id'] = output['order_id']
+				curr_input['start_time'] = output['start_time']
+				metricData.append(curr_input)
+
+				#calculating overall metrics of algorithm
 				wait_time += calcWaitTime(curr_input, output)
 				profit += drink_map[curr_input['type']][1]
 				num_of_order += 1
+				
 			
 	with open('output_fifo' + '.json', 'w') as outfile:
 		json.dump(retdata, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
-	return 'profit: ' + str(profit), 'num of order: ' +  str(num_of_order), 'percent of order: ' + str(num_of_order / float(len(data))), 'average wait_time: ' + str(wait_time / float(num_of_order)), 'times both baristas available at same time: ' + str(barista_avail)
 
-print(simulateCafeDay('input'))
+	with open('fifo_metric_output' + '.json', 'w') as outfile:
+		json.dump(metricData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
+	return profit, num_of_order, (num_of_order / float(len(data))), \
+	(wait_time / float(num_of_order)), (barista_avail)
+	#return 'profit: ' + str(profit), 'num of order: ' +  str(num_of_order), 'percent of order: ' + str(num_of_order / float(len(data))), 'average wait_time: ' + str(wait_time / float(num_of_order)), 'times both baristas available at same time: ' + str(barista_avail)
+
 
 class TestBaristaChosen(unittest.TestCase):
 	
@@ -144,10 +165,66 @@ class TestIncrementTime(unittest.TestCase):
 	def test_affogato(self):
 		self.assertEqual(incrementTime(0, 'affogato'), 7)
 
+class TestCalcWaitTime(unittest.TestCase):
+
+	def test_tea_immediate(self):
+		difference = calcWaitTime({"order_id":1, "order_time":1, "type":"tea"}, {"barista_id":1, "start_time":1, "type":"tea"})
+		self.assertEquals(difference, 3)
+
+	def test_tea_delay(self):
+		difference = calcWaitTime({"order_id":1, "order_time":1, "type":"tea"}, {"barista_id":1, "start_time":2, "type":"tea"})
+		self.assertEquals(difference, 4)
+
+	def test_latte_immediate(self):
+		difference = calcWaitTime({"order_id":1, "order_time":2, "type":"latte"}, {"barista_id":1, "start_time":2, "type":"latte"})
+		self.assertEquals(difference, 4)
+
+	def test_latte_delay(self):
+		difference = calcWaitTime({"order_id":1, "order_time":2, "type":"latte"}, {"barista_id":1, "start_time":3, "type":"latte"})
+		self.assertEquals(difference, 5)
+
+	def test_affogato_immediate(self):
+		difference = calcWaitTime({"order_id":1, "order_time":3, "type":"affogato"}, {"barista_id":1, "start_time":3, "type":"affogato"})
+		self.assertEquals(difference, 7)
+
+	def test_affogato_delay(self):
+		difference = calcWaitTime({"order_id":1, "order_time":3, "type":"affogato"}, {"barista_id":1, "start_time":4, "type":"affogato"})
+		self.assertEquals(difference, 8)
+
+
+class TestBaristaProcess(unittest.TestCase):
+
+	def test_barista1_order_time_greater_than_barista_availability(self):
+		btime, order = baristaProcess({"order_id":1, "order_time":1, "type":"affogato"}, 1, 0)
+		self.assertEqual(btime, 8)
+		self.assertEquals(order['barista_id'], 1)
+		self.assertEquals(order['start_time'], 1)
+		self.assertEquals(order['order_id'], 1)
+
+	def test_barista2_order_time_greater_than_barista_availability(self):
+		btime, order = baristaProcess({"order_id":1, "order_time":1, "type":"tea"}, 2, 0)
+		self.assertEqual(btime, 4)
+		self.assertEquals(order['barista_id'], 2)
+		self.assertEquals(order['start_time'], 1)
+		self.assertEquals(order['order_id'], 1)
+
+	def test_barista2_order_time_less_than_barista_availability(self):
+		btime, order = baristaProcess({"order_id":1, "order_time":0, "type":"latte"}, 2, 2)		
+		self.assertEqual(btime, 6)
+		self.assertEquals(order['barista_id'], 2)
+		self.assertEquals(order['start_time'], 2)
+		self.assertEquals(order['order_id'], 1)
+
+	def test_barista2_order_time_same_as_barista_availability(self):
+		btime, order = baristaProcess({"order_id":1, "order_time":2, "type":"latte"}, 2, 2)
+		self.assertEqual(btime, 6)
+		self.assertEquals(order['barista_id'], 2)
+		self.assertEquals(order['start_time'], 2)
+		self.assertEquals(order['order_id'], 1)
+
 class TestSimulateCafeDay(unittest.TestCase):
 	
 	def test_barista_both_available_at_same_time_two_orders_have_same_order_time(self):
-		
 		simulateCafeDay('fifo_test1')
 		with open('output_fifo.json') as data_file:
 			data = json.load(data_file)
@@ -237,7 +314,6 @@ class TestSimulateCafeDay(unittest.TestCase):
 		self.assertEqual(order2['start_time'], 3)
 		self.assertEqual(order2['barista_id'], 1)
 
-
 	#test if the given test from prompt works
 	def test_simulateCafeDay(self):
 		profit, num_of_orders, percent_of_orders, average_wait_time, _ = simulateCafeDay('input_test1')
@@ -270,7 +346,6 @@ class TestSimulateCafeDay(unittest.TestCase):
 		self.assertEquals(num_of_orders, 4)
 		self.assertEquals(percent_of_orders, 0.8)
 		self.assertEquals(average_wait_time, 24/float(4))
-
 	
 	def test_BaristaNotAbleToProcessOrderUntilAfterTis100(self):
 		profit, num_of_orders, percent_of_orders, average_wait_time, _ = simulateCafeDay('input_test2')
@@ -278,6 +353,43 @@ class TestSimulateCafeDay(unittest.TestCase):
 		self.assertEquals(num_of_orders, 3)
 		self.assertEquals(percent_of_orders, 0.6)
 		self.assertEquals(average_wait_time, 16/float(3))
+
+	def test_output_metric_file(self):
+		simulateCafeDay('input_test3')
+		with open('fifo_metric_output.json') as data_file:
+			data = json.load(data_file)
+
+		order1 = data[0]
+		self.assertEqual(order1['order_id'],1)
+		self.assertEqual(order1['start_time'], 0)
+		self.assertEqual(order1['barista_id'], 1)
+		self.assertEqual(order1['type'], 'affogato')
+		self.assertEquals(order1['order_time'], 0)
+
+		order2 = data[1]
+		self.assertEqual(order2['order_id'],2)
+		self.assertEqual(order2['start_time'], 1)
+		self.assertEqual(order2['barista_id'], 2)
+		self.assertEqual(order2['type'], 'tea')
+		self.assertEqual(order2['order_time'], 1)
+
+		order3 = data[2]
+		self.assertEqual(order3['order_id'],3)
+		self.assertEqual(order3['start_time'], 4)
+		self.assertEqual(order3['barista_id'], 2)
+		self.assertEqual(order3['type'], 'latte')
+		self.assertEqual(order3['order_time'], 2)
+
+		order4 = data[3]
+		self.assertEqual(order4['order_id'],4)
+		self.assertEqual(order4['start_time'], 7)
+		self.assertEqual(order4['barista_id'], 1)
+		self.assertEqual(order4['type'], 'tea')
+		self.assertEqual(order4['order_time'], 2)
+
 	
 if __name__ == '__main__':
-	unittest.main()
+	print(simulateCafeDay('input'))
+	#unittest.main()
+
+	
