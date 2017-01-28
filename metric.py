@@ -127,10 +127,12 @@ class TestMetricCalc(unittest.TestCase):
 if __name__ == '__main__':
 	#unittest.main()
 
+	print('simulation Fifo')
+	print(simulateCafeDay('input'))
 	print('fifo metric: ')
-	simulateCafeDay('input')
 	print(metricCalc('fifo_metric_output', 'input'))
-	optimize('input')
+	print('simulation Optimized')
+	print(optimize('input'))
 	print('optimized metric: ')
 	print(metricCalc('optimized_metric_output', 'input'))
 
