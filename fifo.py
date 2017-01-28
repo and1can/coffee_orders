@@ -1,6 +1,5 @@
 import json
 import unittest
-from pprint import pprint
 
 #key is the type of drink
 #value is tuple

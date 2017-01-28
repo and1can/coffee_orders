@@ -314,8 +314,40 @@ class TestOptimize(unittest.TestCase):
 		self.assertEquals(order2['start_time'], 2)
 		self.assertEquals(order2['barista_id'], 2)
 
+	def test_output_metric_file(self):
+		optimize('optimize_test7')
+		with open('optimized_metric_output.json') as data_file:
+			data = json.load(data_file)
 
+		order1 = data[0]
+		self.assertEqual(order1['order_id'],2)
+		self.assertEqual(order1['start_time'], 1)
+		self.assertEqual(order1['barista_id'], 1)
+		self.assertEqual(order1['type'], 'tea')
+		self.assertEquals(order1['order_time'], 1)
+
+		order2 = data[1]
+		self.assertEqual(order2['order_id'],1)
+		self.assertEqual(order2['start_time'], 0)
+		self.assertEqual(order2['barista_id'], 2)
+		self.assertEqual(order2['type'], 'affogato')
+		self.assertEqual(order2['order_time'], 0)
+
+		order3 = data[2]
+		self.assertEqual(order3['order_id'],4)
+		self.assertEqual(order3['start_time'], 4)
+		self.assertEqual(order3['barista_id'], 1)
+		self.assertEqual(order3['type'], 'tea')
+		self.assertEqual(order3['order_time'], 2)
+
+		order4 = data[3]
+		self.assertEqual(order4['order_id'],3)
+		self.assertEqual(order4['start_time'], 7)
+		self.assertEqual(order4['barista_id'], 2)
+		self.assertEqual(order4['type'], 'latte')
+		self.assertEqual(order4['order_time'], 2)
 
 if __name__ == '__main__':
-	#unittest.main()
 	print(optimize('input'))
+	unittest.main()
+	

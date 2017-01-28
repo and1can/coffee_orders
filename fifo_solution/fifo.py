@@ -1,6 +1,5 @@
 import json
 import unittest
-from pprint import pprint
 from chainmap import ChainMap
 
 #key is the type of drink
@@ -354,8 +353,43 @@ class TestSimulateCafeDay(unittest.TestCase):
 		self.assertEquals(num_of_orders, 3)
 		self.assertEquals(percent_of_orders, 0.6)
 		self.assertEquals(average_wait_time, 16/float(3))
+
+	def test_output_metric_file(self):
+		simulateCafeDay('input_test3')
+		with open('fifo_metric_output.json') as data_file:
+			data = json.load(data_file)
+
+		order1 = data[0]
+		self.assertEqual(order1['order_id'],1)
+		self.assertEqual(order1['start_time'], 0)
+		self.assertEqual(order1['barista_id'], 1)
+		self.assertEqual(order1['type'], 'affogato')
+		self.assertEquals(order1['order_time'], 0)
+
+		order2 = data[1]
+		self.assertEqual(order2['order_id'],2)
+		self.assertEqual(order2['start_time'], 1)
+		self.assertEqual(order2['barista_id'], 2)
+		self.assertEqual(order2['type'], 'tea')
+		self.assertEqual(order2['order_time'], 1)
+
+		order3 = data[2]
+		self.assertEqual(order3['order_id'],3)
+		self.assertEqual(order3['start_time'], 4)
+		self.assertEqual(order3['barista_id'], 2)
+		self.assertEqual(order3['type'], 'latte')
+		self.assertEqual(order3['order_time'], 2)
+
+		order4 = data[3]
+		self.assertEqual(order4['order_id'],4)
+		self.assertEqual(order4['start_time'], 7)
+		self.assertEqual(order4['barista_id'], 1)
+		self.assertEqual(order4['type'], 'tea')
+		self.assertEqual(order4['order_time'], 2)
+
 	
 if __name__ == '__main__':
-	#unittest.main()
-
 	print(simulateCafeDay('input'))
+	unittest.main()
+
+	
