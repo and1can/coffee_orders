@@ -349,5 +349,5 @@ class TestOptimize(unittest.TestCase):
 
 if __name__ == '__main__':
 	print(optimize('input'))
-	unittest.main()
+	#unittest.main()
 	
