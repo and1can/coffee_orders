@@ -48,10 +48,11 @@ def process(d1, d2):
 	#print('processing: ', d1, d2)
 	d1_wait = drink_map[d1['type']][0]
 	d2_wait = drink_map[d2['type']][0]
+	long_order, short_order = order_pair(d1, d2)
 	if (d1_wait <= d2_wait):
-		return (d1, d2)
+		return (long_order, short_order)
 	else:
-		return (d2, d1)
+		return (short_order, long_order)
 
 #returns the startTime
 #b is the start time of the barista
