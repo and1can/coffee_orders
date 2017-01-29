@@ -2,6 +2,7 @@ import json
 import unittest
 from chainmap import ChainMap
 import sys
+import metric
 
 #key is the type of drink
 #value is tuple
@@ -134,6 +135,6 @@ if __name__ == '__main__':
 		profit, num_of_orders, percent_of_orders, average_wait_time, _ = simulateCafeDay(sys.argv[1])
 		print('profit: ' + str(profit), 'num of order: ' +  str(num_of_orders), 'percent of order: ' + \
 		 str(percent_of_orders), 'average wait_time: ' + str(average_wait_time))
-		
+		metric.metricCalc('output_files/fifo_metric_output', sys.argv[1], False)
 			
 	
