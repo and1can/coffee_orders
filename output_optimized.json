@@ -1,12 +1,12 @@
 [
     {
         "barista_id":1,
-        "order_id":1,
+        "order_id":2,
         "start_time":0
     },
     {
         "barista_id":2,
-        "order_id":2,
+        "order_id":1,
         "start_time":0
     }
 ]

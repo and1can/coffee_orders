@@ -18,20 +18,29 @@ def getBarista(t1, t2):
 	else: 
 		return 2
 
-def process(d1, d2, alternate_bool):
+#def process(d1, d2, alternate_bool):
+	#print('processing: ', d1, d2)
+#	d1_wait = drink_map[d1['type']][0]
+#	d2_wait = drink_map[d2['type']][0]
+#	if (d1_wait <= d2_wait):
+#		if (alternate_bool):
+#			return (d2, d1)
+#		else:
+#			return (d1, d2)
+#	else:
+#		if (alternate_bool):
+#			return (d1, d2)
+#		else:
+#			return (d2, d1)
+
+def process(d1, d2):
 	#print('processing: ', d1, d2)
 	d1_wait = drink_map[d1['type']][0]
 	d2_wait = drink_map[d2['type']][0]
 	if (d1_wait <= d2_wait):
-		if (alternate_bool):
-			return (d2, d1)
-		else:
-			return (d1, d2)
+		return (d1, d2)
 	else:
-		if (alternate_bool):
-			return (d1, d2)
-		else:
-			return (d2, d1)
+		return (d2, d1)
 
 #returns the startTime
 #b is the start time of the barista
@@ -89,7 +98,8 @@ def optimize(input_filename):
 		d2 = data[i + offset + 1]
 		#print('alternate_bool', alternate_bool)
 		offset += 1
-		barista1_order, barista2_order = process(d1, d2, alternate_bool)
+		#barista1_order, barista2_order = process(d1, d2, alternate_bool)
+		barista1_order, barista2_order = process(d1, d2)
 		alternate_bool = not alternate_bool
 		b1_order_time = drink_map[barista1_order['type']][0]
 		b2_order_time = drink_map[barista2_order['type']][0]

@@ -1,247 +1,237 @@
 [
     {
-        "barista_id":1,
         "order_id":0,
         "order_time":39,
-        "start_time":39,
         "type":"tea"
     },
     {
-        "barista_id":2,
         "order_id":1,
         "order_time":40,
-        "start_time":40,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":2,
         "order_time":41,
-        "start_time":42,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":3,
         "order_time":43,
-        "start_time":44,
         "type":"tea"
     },
     {
-        "barista_id":1,
         "order_id":4,
         "order_time":44,
-        "start_time":46,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":5,
         "order_time":44,
-        "start_time":47,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":6,
         "order_time":45,
-        "start_time":50,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":7,
         "order_time":46,
-        "start_time":51,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":8,
         "order_time":46,
-        "start_time":54,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":9,
         "order_time":47,
-        "start_time":55,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":10,
         "order_time":48,
-        "start_time":58,
         "type":"tea"
     },
     {
-        "barista_id":2,
         "order_id":11,
         "order_time":48,
-        "start_time":59,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":12,
         "order_time":48,
-        "start_time":61,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":13,
         "order_time":48,
-        "start_time":63,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":14,
         "order_time":49,
-        "start_time":65,
         "type":"tea"
     },
     {
-        "barista_id":2,
         "order_id":15,
         "order_time":49,
-        "start_time":67,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":16,
         "order_time":50,
-        "start_time":68,
         "type":"tea"
     },
     {
-        "barista_id":1,
         "order_id":17,
         "order_time":50,
-        "start_time":71,
         "type":"tea"
     },
     {
-        "barista_id":2,
         "order_id":18,
         "order_time":50,
-        "start_time":71,
         "type":"tea"
     },
     {
-        "barista_id":1,
         "order_id":19,
         "order_time":51,
-        "start_time":74,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":20,
         "order_time":51,
-        "start_time":74,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":21,
         "order_time":51,
-        "start_time":78,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":22,
         "order_time":51,
-        "start_time":78,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":23,
         "order_time":53,
-        "start_time":82,
         "type":"tea"
     },
     {
-        "barista_id":2,
         "order_id":24,
         "order_time":53,
-        "start_time":82,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":25,
         "order_time":53,
-        "start_time":85,
         "type":"tea"
     },
     {
-        "barista_id":2,
         "order_id":26,
         "order_time":53,
-        "start_time":86,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":27,
         "order_time":54,
-        "start_time":88,
         "type":"tea"
     },
     {
-        "barista_id":2,
         "order_id":28,
         "order_time":54,
-        "start_time":90,
         "type":"latte"
     },
     {
-        "barista_id":1,
         "order_id":29,
         "order_time":55,
-        "start_time":91,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":30,
         "order_time":55,
-        "start_time":94,
         "type":"tea"
     },
     {
-        "barista_id":1,
         "order_id":31,
         "order_time":55,
-        "start_time":95,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":32,
         "order_time":55,
-        "start_time":97,
         "type":"tea"
     },
     {
-        "barista_id":1,
         "order_id":33,
         "order_time":55,
-        "start_time":99,
         "type":"latte"
     },
     {
-        "barista_id":2,
         "order_id":34,
         "order_time":57,
-        "start_time":100,
+        "type":"tea"
+    },
+    {
+        "order_id":35,
+        "order_time":58,
+        "type":"latte"
+    },
+    {
+        "order_id":36,
+        "order_time":58,
+        "type":"latte"
+    },
+    {
+        "order_id":37,
+        "order_time":58,
+        "type":"affogato"
+    },
+    {
+        "order_id":38,
+        "order_time":58,
+        "type":"latte"
+    },
+    {
+        "order_id":39,
+        "order_time":58,
+        "type":"latte"
+    },
+    {
+        "order_id":40,
+        "order_time":59,
+        "type":"tea"
+    },
+    {
+        "order_id":41,
+        "order_time":60,
+        "type":"latte"
+    },
+    {
+        "order_id":42,
+        "order_time":60,
+        "type":"latte"
+    },
+    {
+        "order_id":43,
+        "order_time":60,
+        "type":"tea"
+    },
+    {
+        "order_id":44,
+        "order_time":61,
+        "type":"tea"
+    },
+    {
+        "order_id":45,
+        "order_time":63,
+        "type":"affogato"
+    },
+    {
+        "order_id":46,
+        "order_time":63,
         "type":"tea"
     }
 ]

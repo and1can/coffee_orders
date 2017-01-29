@@ -55,7 +55,6 @@ def metricCalc(metric_file_name, input_file_name, test=True):
 	tea_total = 0
 	latte_total = 0
 	affogato_total = 0
-	orders_map = {}
 	for i in range(len(data)):
 		if (data[i]['type'] == 'tea'):
 			tea_total += 1
@@ -63,17 +62,6 @@ def metricCalc(metric_file_name, input_file_name, test=True):
 			latte_total += 1
 		else:
 			affogato_total += 1
-
-		curr = data[i]
-		if (curr['order_time'] not in orders_map):
-			orders_map[curr['order_time']] = 1
-		else:
-			orders_map[curr['order_time']] += 1
-	
-	
-
-	#plt.bar(orders_map.keys(), orders_map.values())
-	#plt.show()
 
 	tea_percent_comp = 0
 	latte_percent_comp = 0
