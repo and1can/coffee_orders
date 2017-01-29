@@ -20,6 +20,13 @@ def getBarista(t1, t2):
 	else: 
 		return 2
 
+#return the longer of the two orders as first value of tuple and second value of tuple as the other order
+def order_pair(o1, o2):
+	if (drink_map[o1['type']][0] > drink_map[o2['type']][0]):
+		return (o1, o2)
+	else:
+		return (o2, o1)
+
 #def process(d1, d2, alternate_bool):
 	#print('processing: ', d1, d2)
 #	d1_wait = drink_map[d1['type']][0]
@@ -34,6 +41,8 @@ def getBarista(t1, t2):
 #			return (d1, d2)
 #		else:
 #			return (d2, d1)
+
+
 
 def process(d1, d2):
 	#print('processing: ', d1, d2)
@@ -85,12 +94,10 @@ def optimize(input_filename):
 	metricData = []
 	b1_time = 0
 	b2_time = 0
-
 	profit = 0
 	num_of_order = 0
 	wait_time = 0
 	barista_avail = 0
-
 	alternate_bool = True
 	
 	with open(input_filename + '.json') as data_file:

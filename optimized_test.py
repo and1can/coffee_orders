@@ -106,6 +106,28 @@ class TestCalcWaitTime(unittest.TestCase):
 		difference = opt.calcWaitTime({"order_id":1, "order_time":3, "type":"affogato"}, {"barista_id":1, "start_time":4, "type":"affogato"})
 		self.assertEquals(difference, 8)
 
+class TestOrderPair(unittest.TestCase):
+
+	def test_first_order_of_pair_is_faster(self):
+		long_order, short_order = opt.order_pair({"order_id": 1, "order_time": 0, "type": "tea"}, \
+			{"order_id": 2, "order_time": 0, "type": "affogato"})
+		self.assertEqual(long_order['order_id'], 2)
+		self.assertEqual(long_order['order_time'], 0)
+		self.assertEqual(long_order['type'], 'affogato')
+		self.assertEqual(short_order['order_id'], 1)
+		self.assertEqual(short_order['order_time'], 0)
+		self.assertEqual(short_order['type'], 'tea')
+
+	def test_first_order_of_pair_is_slower(self):
+		long_order, short_order = opt.order_pair({"order_id": 1, "order_time": 0, "type": "latte"}, \
+			{"order_id": 2, "order_time": 0, "type": "tea"})
+		self.assertEqual(long_order['order_id'], 1)
+		self.assertEqual(long_order['order_time'], 0)
+		self.assertEqual(long_order['type'], 'latte')
+		self.assertEqual(short_order['order_id'], 2)
+		self.assertEqual(short_order['order_time'], 0)
+		self.assertEqual(short_order['type'], 'tea')
+
 class TestOptimize(unittest.TestCase):
 
 	#test is in optimize_test1
