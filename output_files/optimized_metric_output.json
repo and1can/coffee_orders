@@ -1,16 +1,16 @@
 [
     {
         "barista_id":1,
-        "order_id":1,
-        "order_time":0,
-        "start_time":0,
-        "type":"latte"
-    },
-    {
-        "barista_id":2,
         "order_id":2,
         "order_time":0,
         "start_time":0,
         "type":"tea"
+    },
+    {
+        "barista_id":2,
+        "order_id":1,
+        "order_time":0,
+        "start_time":0,
+        "type":"latte"
     }
 ]

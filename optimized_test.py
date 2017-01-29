@@ -111,7 +111,7 @@ class TestOptimize(unittest.TestCase):
 	#test is in optimize_test1
 	def test_same_order_time_first_order_is_faster_than_second(self):
 		opt.optimize('optimized_tests/optimize_test1')
-		with open('output_optimized.json') as data_file:
+		with open('output_files/output_optimized.json') as data_file:
 			data = json.load(data_file)
 		
 		order1 = data[0]
@@ -127,7 +127,7 @@ class TestOptimize(unittest.TestCase):
 	#test is in optimize_test2
 	def test_same_order_time_first_order_is_slower_than_second(self):
 		opt.optimize('optimized_tests/optimize_test2')
-		with open('output_optimized.json') as data_file:
+		with open('output_files/output_optimized.json') as data_file:
 			data = json.load(data_file)
 		
 		order1 = data[0]
@@ -143,7 +143,7 @@ class TestOptimize(unittest.TestCase):
 	#test is in optimize_test3
 	def test_first_order_time_is_first_and_order_is_faster_than_second_order(self):
 		opt.optimize('optimized_tests/optimize_test3')
-		with open('output_optimized.json') as data_file:
+		with open('output_files/output_optimized.json') as data_file:
 			data = json.load(data_file)
 		
 		order1 = data[0]
@@ -159,7 +159,7 @@ class TestOptimize(unittest.TestCase):
 	#test is in optimize_test4
 	def test_first_order_time_is_first_and_order_is_slower_than_second_order(self):
 		opt.optimize('optimized_tests/optimize_test4')
-		with open('output_optimized.json') as data_file:
+		with open('output_files/output_optimized.json') as data_file:
 			data = json.load(data_file)
 		
 		order1 = data[0]
@@ -175,7 +175,7 @@ class TestOptimize(unittest.TestCase):
 	#test is in optimize_test5
 	def test_first_order_time_is_second_and_order_is_faster_than_second_order(self):
 		opt.optimize('optimized_tests/optimize_test5')
-		with open('output_optimized.json') as data_file:
+		with open('output_files/output_optimized.json') as data_file:
 			data = json.load(data_file)
 		
 		order1 = data[0]
@@ -191,7 +191,7 @@ class TestOptimize(unittest.TestCase):
 	#test is in optimize_test6
 	def test_first_order_time_is_second_and_order_is_slower_than_second_order(self):
 		opt.optimize('optimized_tests/optimize_test6')
-		with open('output_optimized.json') as data_file:
+		with open('output_files/output_optimized.json') as data_file:
 			data = json.load(data_file)
 		
 		order1 = data[0]
@@ -206,7 +206,7 @@ class TestOptimize(unittest.TestCase):
 
 	def test_output_metric_file(self):
 		opt.optimize('optimized_tests/optimize_test7')
-		with open('optimized_metric_output.json') as data_file:
+		with open('output_files/optimized_metric_output.json') as data_file:
 			data = json.load(data_file)
 
 		order1 = data[0]
@@ -238,5 +238,4 @@ class TestOptimize(unittest.TestCase):
 		self.assertEqual(order4['order_time'], 2)
 
 if __name__ == '__main__':
-	#print(optimize('poisson_mean_50_47_samples_equal_prob_types_of_drinks'))
 	unittest.main()

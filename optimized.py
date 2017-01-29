@@ -168,11 +168,11 @@ def optimize(input_filename):
 			num_of_order += 1
 
 	
-	with open('optimized_metric_output' + '.json', 'w') as outfile:
+	with open('output_files/optimized_metric_output' + '.json', 'w') as outfile:
 		json.dump(metricData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
 	
 
-	with open('output_optimized' + '.json', 'w') as outfile:
+	with open('output_files/output_optimized' + '.json', 'w') as outfile:
 		json.dump(retData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
 	#return 'profit: ' + str(profit), 'num of order: ' +  str(num_of_order), 'percent of order: ' + str(num_of_order / float(len(data))), 'average wait_time: ' + str(wait_time / float(num_of_order)), 'times both baristas available at same time: ' + str(barista_avail)
 	return str(profit), str(num_of_order), str(num_of_order / float(len(data))), str(wait_time / float(num_of_order)), str(barista_avail)
