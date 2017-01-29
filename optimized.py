@@ -8,14 +8,30 @@ from chainmap import ChainMap
 #1st tuple value is profit
 drink_map = dict([("tea", [3, 2]), ("latte", [4, 3]), ("affogato", [7, 5])])
 
-def process(d1, d2):
+#function returns 1 for barista 1 and 2 for barista 2
+#the barista returned is the first to be available
+#t1 is the next available time or barista 1
+#t2 is the next available time for barista 2
+def getBarista(t1, t2):
+	if (t1 <= t2):
+		return 1
+	else: 
+		return 2
+
+def process(d1, d2, alternate_bool):
 	#print('processing: ', d1, d2)
 	d1_wait = drink_map[d1['type']][0]
 	d2_wait = drink_map[d2['type']][0]
 	if (d1_wait <= d2_wait):
-		return (d1, d2)
+		if (alternate_bool):
+			return (d2, d1)
+		else:
+			return (d1, d2)
 	else:
-		return (d2, d1)
+		if (alternate_bool):
+			return (d1, d2)
+		else:
+			return (d2, d1)
 
 #returns the startTime
 #b is the start time of the barista
@@ -63,14 +79,18 @@ def optimize(input_filename):
 	num_of_order = 0
 	wait_time = 0
 	barista_avail = 0
+
+	alternate_bool = True
 	
 	with open(input_filename + '.json') as data_file:
 		data = json.load(data_file)
 	for i in range(len(data) / 2):
 		d1 = data[i + offset]
 		d2 = data[i + offset + 1]
+		#print('alternate_bool', alternate_bool)
 		offset += 1
-		barista1_order, barista2_order = process(d1, d2)
+		barista1_order, barista2_order = process(d1, d2, alternate_bool)
+		alternate_bool = not alternate_bool
 		b1_order_time = drink_map[barista1_order['type']][0]
 		b2_order_time = drink_map[barista2_order['type']][0]
 
@@ -101,6 +121,42 @@ def optimize(input_filename):
 			barista2_order['order_id'] = output['order_id']
 			barista2_order['start_time'] = output['start_time']
 			metricData.append(barista2_order)
+
+	if (len(data) % 2 == 1):
+		print('we have odd case', 'last data point: ', data[len(data) - 1])
+		lastData = data[len(data) - 1]
+		barista = getBarista(b1_time, b2_time)
+		lastOrderTime = drink_map[lastData['type']][0]
+		print('barista: ', barista, 'b1_time: ', b1_time, 'b2_time: ', b2_time, 'lastOrderTime: ', lastOrderTime)
+		if (barista == 1 and b1_time + lastOrderTime <= 100):
+			b1_time, output = baristaProcess(lastData, barista, b1_time)
+			retData.append(output)
+
+			#create a dictionary that contains input and output information to be written to fifo_metric_output
+			lastData['barista_id'] = output['barista_id']
+			lastData['order_id'] = output['order_id']
+			lastData['start_time'] = output['start_time']
+			metricData.append(lastData)
+
+			#calculating overall metrics of algorithm
+			wait_time += calcWaitTime(lastData, output)
+			profit += drink_map[lastData['type']][1]
+			num_of_order += 1
+		elif (barista == 2 and b2_time + lastOrderTime <= 100):
+			b1_time, output = baristaProcess(lastData, barista, b2_time)
+			retData.append(output)
+
+			#create a dictionary that contains input and output information to be written to fifo_metric_output
+			lastData['barista_id'] = output['barista_id']
+			lastData['order_id'] = output['order_id']
+			lastData['start_time'] = output['start_time']
+			metricData.append(lastData)
+
+			#calculating overall metrics of algorithm
+			wait_time += calcWaitTime(lastData, output)
+			profit += drink_map[lastData['type']][1]
+			num_of_order += 1
+
 	
 	with open('optimized_metric_output' + '.json', 'w') as outfile:
 		json.dump(metricData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
@@ -348,6 +404,6 @@ class TestOptimize(unittest.TestCase):
 		self.assertEqual(order4['order_time'], 2)
 
 if __name__ == '__main__':
-	print(optimize('input'))
+	print(optimize('poisson_mean_50_47_samples_equal_prob_types_of_drinks'))
 	#unittest.main()
 	

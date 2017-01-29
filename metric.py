@@ -2,6 +2,7 @@ import json
 import unittest
 from fifo import simulateCafeDay
 from optimized import optimize
+import matplotlib.pylab as plt
 
 
 def metricCalc(file_name, input_name):
@@ -53,6 +54,7 @@ def metricCalc(file_name, input_name):
 	tea_total = 0
 	latte_total = 0
 	affogato_total = 0
+	orders_map = {}
 	for i in range(len(data)):
 		if (data[i]['type'] == 'tea'):
 			tea_total += 1
@@ -61,7 +63,16 @@ def metricCalc(file_name, input_name):
 		else:
 			affogato_total += 1
 
+		curr = data[i]
+		if (curr['order_time'] not in orders_map):
+			orders_map[curr['order_time']] = 1
+		else:
+			orders_map[curr['order_time']] += 1
 	
+	
+
+	plt.bar(orders_map.keys(), orders_map.values())
+	plt.show()
 
 	tea_percent_comp = 0
 	latte_percent_comp = 0
@@ -128,7 +139,7 @@ if __name__ == '__main__':
 	#unittest.main()
 
 	print('simulation Fifo')
-	print(simulateCafeDay('input'))
+	print(simulateCafeDay('poisson_mean_50_47_samples_equal_prob_types_of_drinks'))
 	print('fifo metric: ')
 	print(metricCalc('fifo_metric_output', 'input'))
 	print('simulation Optimized')

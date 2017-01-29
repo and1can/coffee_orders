@@ -389,7 +389,7 @@ class TestSimulateCafeDay(unittest.TestCase):
 
 	
 if __name__ == '__main__':
-	print(simulateCafeDay('input'))
+	print(simulateCafeDay('poisson_mean_50_47_samples_equal_prob_types_of_drinks'))
 	#unittest.main()
 
 	
