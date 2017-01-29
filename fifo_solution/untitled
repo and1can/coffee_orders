@@ -1,5 +1,0 @@
-[
-    { "order_id": 1, "order_time": 0, "type": "tea" },
-    { "order_id": 2, "order_time": 0, "type": "tea" },
-    { "order_id": 3, "order_time": 0, "type": "latte" }
-]
