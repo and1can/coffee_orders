@@ -269,5 +269,4 @@ class TestSimulateCafeDay(unittest.TestCase):
 		self.assertEqual(order4['order_time'], 2)
 
 if __name__ == '__main__':
-	#print(optimize('poisson_mean_50_47_samples_equal_prob_types_of_drinks'))
 	unittest.main()

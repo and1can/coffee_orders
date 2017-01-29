@@ -119,8 +119,7 @@ def simulateCafeDay(input_filename):
 		json.dump(metricData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
 	return profit, num_of_order, (num_of_order / float(len(data))), \
 	(wait_time / float(num_of_order)), (barista_avail)
-	#return 'profit: ' + str(profit), 'num of order: ' +  str(num_of_order), 'percent of order: ' + str(num_of_order / float(len(data))), 'average wait_time: ' + str(wait_time / float(num_of_order)), 'times both baristas available at same time: ' + str(barista_avail)
-
+	
 
 
 
@@ -130,12 +129,11 @@ if __name__ == '__main__':
 	print(sys.argv)
 	if (len(sys.argv) < 2):
 		print('need to type a file to run fifo algorithm or type test to run tests')
-	else:
-	 	if (sys.argv[1] == 'tests'):
-			print('running tests')
-			unittest.main()
-		else: 
-			print('running fifo.py on input file ' + str(sys.argv[1]) + '.json')
-	#unittest.main()
+	else: 
+		print('running fifo.py on input file ' + str(sys.argv[1]) + '.json')
+		profit, num_of_orders, percent_of_orders, average_wait_time, _ = simulateCafeDay(sys.argv[1])
+		print('profit: ' + str(profit), 'num of order: ' +  str(num_of_orders), 'percent of order: ' + \
+		 str(percent_of_orders), 'average wait_time: ' + str(average_wait_time))
+		
 			
 	
