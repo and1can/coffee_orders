@@ -1,6 +1,8 @@
 import json
 import unittest
 from chainmap import ChainMap
+import sys
+import metric
 
 #key is the type of drink
 #value is tuple
@@ -133,11 +135,11 @@ def optimize(input_filename):
 			metricData.append(barista2_order)
 
 	if (len(data) % 2 == 1):
-		print('we have odd case', 'last data point: ', data[len(data) - 1])
+		#print('we have odd case', 'last data point: ', data[len(data) - 1])
 		lastData = data[len(data) - 1]
 		barista = getBarista(b1_time, b2_time)
 		lastOrderTime = drink_map[lastData['type']][0]
-		print('barista: ', barista, 'b1_time: ', b1_time, 'b2_time: ', b2_time, 'lastOrderTime: ', lastOrderTime)
+		#print('barista: ', barista, 'b1_time: ', b1_time, 'b2_time: ', b2_time, 'lastOrderTime: ', lastOrderTime)
 		if (barista == 1 and b1_time + lastOrderTime <= 100):
 			b1_time, output = baristaProcess(lastData, barista, b1_time)
 			retData.append(output)
@@ -174,9 +176,17 @@ def optimize(input_filename):
 
 	with open('output_files/output_optimized' + '.json', 'w') as outfile:
 		json.dump(retData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
-	#return 'profit: ' + str(profit), 'num of order: ' +  str(num_of_order), 'percent of order: ' + str(num_of_order / float(len(data))), 'average wait_time: ' + str(wait_time / float(num_of_order)), 'times both baristas available at same time: ' + str(barista_avail)
 	return str(profit), str(num_of_order), str(num_of_order / float(len(data))), str(wait_time / float(num_of_order)), str(barista_avail)
 
-
+if __name__ == '__main__':
+	print(sys.argv)
+	if (len(sys.argv) < 2):
+		print('need to type a file to run optimized algorithm')
+	else: 
+		print('running optimzed.py on input file ' + str(sys.argv[1]) + '.json')
+		profit, num_of_orders, percent_of_orders, average_wait_time, _ = optimize(sys.argv[1])
+		print('profit: ' + str(profit), 'num of order: ' +  str(num_of_orders), 'percent of order: ' + \
+		 str(percent_of_orders), 'average wait_time: ' + str(average_wait_time))
+		metric.metricCalc('output_files/optimized_metric_output', sys.argv[1], False)
 
 	

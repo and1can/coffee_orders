@@ -129,7 +129,7 @@ def simulateCafeDay(input_filename):
 if __name__ == '__main__':
 	print(sys.argv)
 	if (len(sys.argv) < 2):
-		print('need to type a file to run fifo algorithm or type test to run tests')
+		print('need to type a file to run fifo algorithm')
 	else: 
 		print('running fifo.py on input file ' + str(sys.argv[1]) + '.json')
 		profit, num_of_orders, percent_of_orders, average_wait_time, _ = simulateCafeDay(sys.argv[1])
