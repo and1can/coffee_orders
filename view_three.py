@@ -8,6 +8,16 @@ import metric
 #1st tuple value is profit
 drink_map = dict([("tea", [3, 2]), ("latte", [4, 3]), ("affogato", [7, 5])])
 
+#function returns 1 for barista 1 and 2 for barista 2
+#the barista returned is the first to be available
+#t1 is the next available time or barista 1
+#t2 is the next available time for barista 2
+def getBarista(t1, t2):
+	if (t1 <= t2):
+		return (1, t1)
+	else: 
+		return (2, t2)
+
 #returns the startTime
 #b is the start time of the barista
 #o is the order time
@@ -69,12 +79,14 @@ def view_three(input_filename):
 	b1_time = 0
 	b2_time = 0
 	profit = 0
-	num_of_order = 0
+	num_of_orders = 0
 	wait_time = 0
 
 	with open(input_filename + '.json') as data_file:
 		data = json.load(data_file)
 
+	#need to store because length needed for metric calculation
+	dataLength = len(data)
 	for i in range(len(data) / 3):
 		o1 = data[0]
 		o2 = data[1]
@@ -83,27 +95,30 @@ def view_three(input_filename):
 		barista, b_time = getBarista(b1_time, b2_time)
 		
 		#make these two chunks into a helper function called processOrder
-		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, fast)
+		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, fast, \
+			wait_time, profit, num_of_orders)
 		if (valid):
-			retData.append(ouput)
+			retData.append(output)
 			metricData.append(order)
 			if (barista == 1):
 				b1_time = b_time
 			else:
 				b2_time = b_time
 
-		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, med)
+		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, med, \
+			wait_time, profit, num_of_orders)
 		if (valid):
-			retData.append(ouput)
+			retData.append(output)
 			metricData.append(order)
 			if (barista == 1):
 				b1_time = b_time
 			else:
 				b2_time = b_time
 
-		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, slow)
+		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, slow, \
+			wait_time, profit, num_of_orders)
 		if (valid):
-			retData.append(ouput)
+			retData.append(output)
 			metricData.append(order)
 			if (barista == 1):
 				b1_time = b_time
@@ -124,9 +139,10 @@ def view_three(input_filename):
 		else: 
 			b_time = b2_time
 			barista = 2
-		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, curr)
+		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, curr, \
+			wait_time, profit, num_of_orders)
 		if (valid):
-			retData.append(ouput)
+			retData.append(output)
 			metricData.append(order)
 			if (barista == 1):
 				b1_time = b_time
@@ -139,7 +155,7 @@ def view_three(input_filename):
 
 	with open('output_files/output_optimized' + '.json', 'w') as outfile:
 		json.dump(retData, outfile, indent = 4, sort_keys=True, separators=(',', ':'))
-	return str(profit), str(num_of_order), str(num_of_order / float(len(data))), str(wait_time / float(num_of_order)), str(barista_avail)
+	return str(profit), str(num_of_orders), str(num_of_orders / float(dataLength)), str(wait_time / float(num_of_orders))
 	#print('remaining data: ', data)
 
 	#handle case with remainder of data
@@ -150,7 +166,7 @@ if __name__ == '__main__':
 		print('need to type a file to run optimized algorithm')
 	else: 
 		print('running optimzed.py on input file ' + str(sys.argv[1]) + '.json')
-		profit, num_of_orders, percent_of_orders, average_wait_time, _ = view_three(sys.argv[1])
+		profit, num_of_orders, percent_of_orders, average_wait_time = view_three(sys.argv[1])
 		print('profit: ' + str(profit), 'num of order: ' +  str(num_of_orders), 'percent of order: ' + \
 		 str(percent_of_orders), 'average wait_time: ' + str(average_wait_time))
 		metric.metricCalc('output_files/optimized_metric_output', sys.argv[1], False)

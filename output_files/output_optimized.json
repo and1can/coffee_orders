@@ -2,181 +2,191 @@
     {
         "barista_id":1,
         "order_id":1,
-        "start_time":25
-    },
-    {
-        "barista_id":2,
-        "order_id":0,
-        "start_time":24
+        "start_time":7
     },
     {
         "barista_id":1,
         "order_id":3,
-        "start_time":29
+        "start_time":11
     },
     {
-        "barista_id":2,
+        "barista_id":1,
         "order_id":2,
-        "start_time":27
-    },
-    {
-        "barista_id":1,
-        "order_id":5,
-        "start_time":33
-    },
-    {
-        "barista_id":2,
-        "order_id":4,
-        "start_time":31
-    },
-    {
-        "barista_id":1,
-        "order_id":7,
-        "start_time":37
+        "start_time":15
     },
     {
         "barista_id":2,
         "order_id":6,
-        "start_time":35
+        "start_time":10
+    },
+    {
+        "barista_id":2,
+        "order_id":4,
+        "start_time":13
+    },
+    {
+        "barista_id":2,
+        "order_id":5,
+        "start_time":20
+    },
+    {
+        "barista_id":1,
+        "order_id":7,
+        "start_time":22
+    },
+    {
+        "barista_id":1,
+        "order_id":9,
+        "start_time":25
     },
     {
         "barista_id":1,
         "order_id":8,
-        "start_time":44
-    },
-    {
-        "barista_id":2,
-        "order_id":9,
-        "start_time":39
-    },
-    {
-        "barista_id":1,
-        "order_id":10,
-        "start_time":51
+        "start_time":29
     },
     {
         "barista_id":2,
         "order_id":11,
-        "start_time":43
-    },
-    {
-        "barista_id":1,
-        "order_id":12,
-        "start_time":58
+        "start_time":27
     },
     {
         "barista_id":2,
+        "order_id":12,
+        "start_time":30
+    },
+    {
+        "barista_id":2,
+        "order_id":10,
+        "start_time":33
+    },
+    {
+        "barista_id":1,
         "order_id":13,
-        "start_time":46
+        "start_time":36
+    },
+    {
+        "barista_id":1,
+        "order_id":14,
+        "start_time":40
     },
     {
         "barista_id":1,
         "order_id":15,
-        "start_time":65
-    },
-    {
-        "barista_id":2,
-        "order_id":14,
-        "start_time":49
-    },
-    {
-        "barista_id":1,
-        "order_id":17,
-        "start_time":69
+        "start_time":47
     },
     {
         "barista_id":2,
         "order_id":16,
-        "start_time":52
+        "start_time":37
     },
     {
-        "barista_id":1,
+        "barista_id":2,
+        "order_id":17,
+        "start_time":41
+    },
+    {
+        "barista_id":2,
         "order_id":18,
-        "start_time":73
+        "start_time":45
     },
     {
         "barista_id":2,
         "order_id":19,
-        "start_time":55
-    },
-    {
-        "barista_id":1,
-        "order_id":21,
-        "start_time":77
+        "start_time":52
     },
     {
         "barista_id":2,
         "order_id":20,
-        "start_time":58
-    },
-    {
-        "barista_id":1,
-        "order_id":22,
-        "start_time":84
+        "start_time":59
     },
     {
         "barista_id":2,
-        "order_id":23,
-        "start_time":62
-    },
-    {
-        "barista_id":1,
-        "order_id":25,
-        "start_time":91
-    },
-    {
-        "barista_id":2,
-        "order_id":24,
+        "order_id":21,
         "start_time":66
     },
     {
         "barista_id":1,
+        "order_id":23,
+        "start_time":54
+    },
+    {
+        "barista_id":1,
+        "order_id":24,
+        "start_time":57
+    },
+    {
+        "barista_id":1,
+        "order_id":22,
+        "start_time":60
+    },
+    {
+        "barista_id":1,
+        "order_id":25,
+        "start_time":64
+    },
+    {
+        "barista_id":1,
         "order_id":26,
-        "start_time":94
+        "start_time":68
     },
     {
-        "barista_id":2,
+        "barista_id":1,
         "order_id":27,
-        "start_time":69
-    },
-    {
-        "barista_id":2,
-        "order_id":28,
         "start_time":72
     },
     {
         "barista_id":2,
-        "order_id":30,
-        "start_time":75
+        "order_id":28,
+        "start_time":73
     },
     {
         "barista_id":2,
+        "order_id":30,
+        "start_time":76
+    },
+    {
+        "barista_id":2,
+        "order_id":29,
+        "start_time":79
+    },
+    {
+        "barista_id":1,
+        "order_id":31,
+        "start_time":76
+    },
+    {
+        "barista_id":1,
         "order_id":32,
         "start_time":79
     },
     {
-        "barista_id":2,
-        "order_id":34,
+        "barista_id":1,
+        "order_id":33,
         "start_time":83
     },
     {
         "barista_id":2,
-        "order_id":37,
+        "order_id":36,
         "start_time":86
     },
     {
         "barista_id":2,
-        "order_id":38,
-        "start_time":89
+        "order_id":34,
+        "start_time":90
+    },
+    {
+        "barista_id":1,
+        "order_id":39,
+        "start_time":90
+    },
+    {
+        "barista_id":1,
+        "order_id":37,
+        "start_time":93
     },
     {
         "barista_id":2,
         "order_id":40,
-        "start_time":92
-    },
-    {
-        "barista_id":2,
-        "order_id":43,
-        "start_time":96
+        "start_time":97
     }
 ]

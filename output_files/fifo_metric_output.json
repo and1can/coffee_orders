@@ -1,268 +1,212 @@
 [
     {
         "barista_id":1,
-        "order_id":1,
-        "order_time":7,
-        "start_time":7,
+        "order_id":0,
+        "order_time":33,
+        "start_time":33,
         "type":"latte"
     },
     {
         "barista_id":2,
-        "order_id":2,
-        "order_time":7,
-        "start_time":7,
+        "order_id":1,
+        "order_time":35,
+        "start_time":35,
         "type":"affogato"
     },
     {
         "barista_id":1,
+        "order_id":2,
+        "order_time":40,
+        "start_time":40,
+        "type":"affogato"
+    },
+    {
+        "barista_id":2,
         "order_id":3,
-        "order_time":8,
-        "start_time":11,
-        "type":"latte"
+        "order_time":41,
+        "start_time":42,
+        "type":"tea"
     },
     {
         "barista_id":2,
         "order_id":4,
-        "order_time":8,
-        "start_time":14,
-        "type":"affogato"
-    },
-    {
-        "barista_id":1,
-        "order_id":5,
-        "order_time":9,
-        "start_time":15,
-        "type":"affogato"
-    },
-    {
-        "barista_id":2,
-        "order_id":6,
-        "order_time":10,
-        "start_time":21,
+        "order_time":41,
+        "start_time":45,
         "type":"tea"
     },
     {
         "barista_id":1,
+        "order_id":5,
+        "order_time":41,
+        "start_time":47,
+        "type":"tea"
+    },
+    {
+        "barista_id":2,
+        "order_id":6,
+        "order_time":44,
+        "start_time":48,
+        "type":"latte"
+    },
+    {
+        "barista_id":1,
         "order_id":7,
-        "order_time":10,
-        "start_time":22,
+        "order_time":44,
+        "start_time":50,
         "type":"tea"
     },
     {
         "barista_id":2,
         "order_id":8,
-        "order_time":11,
-        "start_time":24,
-        "type":"affogato"
+        "order_time":45,
+        "start_time":52,
+        "type":"latte"
     },
     {
         "barista_id":1,
         "order_id":9,
-        "order_time":11,
-        "start_time":25,
+        "order_time":45,
+        "start_time":53,
         "type":"latte"
     },
     {
-        "barista_id":1,
+        "barista_id":2,
         "order_id":10,
-        "order_time":15,
-        "start_time":29,
-        "type":"latte"
-    },
-    {
-        "barista_id":2,
-        "order_id":11,
-        "order_time":17,
-        "start_time":31,
-        "type":"tea"
-    },
-    {
-        "barista_id":1,
-        "order_id":12,
-        "order_time":21,
-        "start_time":33,
-        "type":"tea"
-    },
-    {
-        "barista_id":2,
-        "order_id":13,
-        "order_time":22,
-        "start_time":34,
-        "type":"latte"
-    },
-    {
-        "barista_id":1,
-        "order_id":14,
-        "order_time":28,
-        "start_time":36,
-        "type":"affogato"
-    },
-    {
-        "barista_id":2,
-        "order_id":15,
-        "order_time":30,
-        "start_time":38,
-        "type":"affogato"
-    },
-    {
-        "barista_id":1,
-        "order_id":16,
-        "order_time":33,
-        "start_time":43,
-        "type":"latte"
-    },
-    {
-        "barista_id":2,
-        "order_id":17,
-        "order_time":34,
-        "start_time":45,
-        "type":"latte"
-    },
-    {
-        "barista_id":1,
-        "order_id":18,
-        "order_time":36,
-        "start_time":47,
-        "type":"affogato"
-    },
-    {
-        "barista_id":2,
-        "order_id":19,
-        "order_time":38,
-        "start_time":49,
-        "type":"affogato"
-    },
-    {
-        "barista_id":1,
-        "order_id":20,
-        "order_time":39,
-        "start_time":54,
-        "type":"affogato"
-    },
-    {
-        "barista_id":2,
-        "order_id":21,
-        "order_time":43,
+        "order_time":46,
         "start_time":56,
         "type":"affogato"
     },
     {
         "barista_id":1,
-        "order_id":22,
-        "order_time":44,
-        "start_time":61,
+        "order_id":11,
+        "order_time":47,
+        "start_time":57,
+        "type":"tea"
+    },
+    {
+        "barista_id":1,
+        "order_id":12,
+        "order_time":48,
+        "start_time":60,
         "type":"latte"
     },
     {
         "barista_id":2,
-        "order_id":23,
-        "order_time":45,
+        "order_id":13,
+        "order_time":48,
         "start_time":63,
-        "type":"tea"
+        "type":"affogato"
     },
     {
         "barista_id":1,
-        "order_id":24,
+        "order_id":14,
+        "order_time":48,
+        "start_time":64,
+        "type":"affogato"
+    },
+    {
+        "barista_id":2,
+        "order_id":15,
         "order_time":49,
-        "start_time":65,
-        "type":"tea"
-    },
-    {
-        "barista_id":2,
-        "order_id":25,
-        "order_time":50,
-        "start_time":66,
-        "type":"latte"
-    },
-    {
-        "barista_id":1,
-        "order_id":26,
-        "order_time":65,
-        "start_time":68,
-        "type":"latte"
-    },
-    {
-        "barista_id":2,
-        "order_id":27,
-        "order_time":66,
         "start_time":70,
         "type":"latte"
     },
     {
         "barista_id":1,
-        "order_id":28,
-        "order_time":67,
-        "start_time":72,
-        "type":"tea"
+        "order_id":16,
+        "order_time":49,
+        "start_time":71,
+        "type":"latte"
     },
     {
         "barista_id":2,
-        "order_id":29,
-        "order_time":67,
+        "order_id":17,
+        "order_time":49,
         "start_time":74,
-        "type":"affogato"
+        "type":"tea"
     },
     {
         "barista_id":1,
-        "order_id":30,
-        "order_time":68,
+        "order_id":18,
+        "order_time":50,
         "start_time":75,
-        "type":"tea"
-    },
-    {
-        "barista_id":1,
-        "order_id":31,
-        "order_time":70,
-        "start_time":78,
-        "type":"tea"
-    },
-    {
-        "barista_id":1,
-        "order_id":32,
-        "order_time":76,
-        "start_time":81,
         "type":"latte"
     },
     {
         "barista_id":2,
-        "order_id":33,
-        "order_time":77,
-        "start_time":81,
-        "type":"affogato"
+        "order_id":19,
+        "order_time":50,
+        "start_time":77,
+        "type":"latte"
     },
     {
         "barista_id":1,
-        "order_id":34,
-        "order_time":78,
-        "start_time":85,
-        "type":"affogato"
+        "order_id":20,
+        "order_time":51,
+        "start_time":79,
+        "type":"tea"
     },
     {
         "barista_id":2,
-        "order_id":35,
-        "order_time":81,
-        "start_time":88,
-        "type":"affogato"
+        "order_id":21,
+        "order_time":51,
+        "start_time":81,
+        "type":"tea"
     },
     {
         "barista_id":1,
-        "order_id":36,
-        "order_time":84,
-        "start_time":92,
+        "order_id":22,
+        "order_time":51,
+        "start_time":82,
         "type":"latte"
     },
     {
         "barista_id":2,
-        "order_id":37,
-        "order_time":84,
-        "start_time":95,
+        "order_id":23,
+        "order_time":51,
+        "start_time":84,
         "type":"affogato"
     },
     {
         "barista_id":1,
-        "order_id":38,
-        "order_time":86,
+        "order_id":24,
+        "order_time":51,
+        "start_time":86,
+        "type":"affogato"
+    },
+    {
+        "barista_id":2,
+        "order_id":25,
+        "order_time":52,
+        "start_time":91,
+        "type":"tea"
+    },
+    {
+        "barista_id":1,
+        "order_id":26,
+        "order_time":52,
+        "start_time":93,
+        "type":"tea"
+    },
+    {
+        "barista_id":2,
+        "order_id":27,
+        "order_time":53,
+        "start_time":94,
+        "type":"affogato"
+    },
+    {
+        "barista_id":1,
+        "order_id":28,
+        "order_time":53,
         "start_time":96,
-        "type":"affogato"
+        "type":"latte"
+    },
+    {
+        "barista_id":1,
+        "order_id":29,
+        "order_time":53,
+        "start_time":100,
+        "type":"latte"
     }
 ]
