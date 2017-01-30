@@ -1,6 +1,5 @@
 import json
 import unittest
-from chainmap import ChainMap
 import sys
 import metric
 

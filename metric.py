@@ -1,7 +1,6 @@
 import json
 import unittest
-from fifo import simulateCafeDay
-#from optimized import optimize
+
 
 
 #set test To False if want to display the metrics
