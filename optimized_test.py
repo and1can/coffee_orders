@@ -12,13 +12,15 @@ class TestProcess(unittest.TestCase):
 
 	def test_first_order_slower_than_second(self):
 		barista1, barista2 = opt.process({"order_id":1, "order_time":1, "type":"affogato"},{"order_id":2, "order_time":2, "type":"latte"} )
-		self.assertEquals(barista1['order_id'], 2)
-		self.assertEquals(barista2['order_id'], 1)
+		#print(barista1)
+		#print(barista2)
+		self.assertEquals(barista1['order_id'], 1)
+		self.assertEquals(barista2['order_id'], 2)
 
 	def test_first_order_faster_than_second(self):
 		barista1, barista2 = opt.process({"order_id":1, "order_time":1, "type":"tea"},{"order_id":2, "order_time":2, "type":"latte"} )
-		self.assertEquals(barista1['order_id'], 1)
-		self.assertEquals(barista2['order_id'], 2)
+		self.assertEquals(barista1['order_id'], 2)
+		self.assertEquals(barista2['order_id'], 1)
 
 class TestDrinkMap(unittest.TestCase):
 	
@@ -137,14 +139,14 @@ class TestOptimize(unittest.TestCase):
 			data = json.load(data_file)
 		
 		order1 = data[0]
-		self.assertEquals(order1['order_id'], 1)
+		self.assertEquals(order1['order_id'], 2)
 		self.assertEquals(order1['start_time'], 0)
 		self.assertEquals(order1['barista_id'], 1)
 		
 		order2 = data[1]
-		self.assertEquals(order2['order_id'], 2)
+		self.assertEquals(order2['order_id'], 1)
 		self.assertEquals(order2['start_time'], 0)
-		self.assertEquals(order2['barista_id'], 2)
+		self.assertEquals(order2['barista_id'], 1)
 
 	#test is in optimize_test2
 	def test_same_order_time_first_order_is_slower_than_second(self):
@@ -153,12 +155,12 @@ class TestOptimize(unittest.TestCase):
 			data = json.load(data_file)
 		
 		order1 = data[0]
-		self.assertEquals(order1['order_id'], 2)
+		self.assertEquals(order1['order_id'], 1)
 		self.assertEquals(order1['start_time'], 0)
 		self.assertEquals(order1['barista_id'], 1)
 		
 		order2 = data[1]
-		self.assertEquals(order2['order_id'], 1)
+		self.assertEquals(order2['order_id'], 2)
 		self.assertEquals(order2['start_time'], 0)
 		self.assertEquals(order2['barista_id'], 2)
 
@@ -169,14 +171,14 @@ class TestOptimize(unittest.TestCase):
 			data = json.load(data_file)
 		
 		order1 = data[0]
-		self.assertEquals(order1['order_id'], 1)
-		self.assertEquals(order1['start_time'], 0)
+		self.assertEquals(order1['order_id'], 2)
+		self.assertEquals(order1['start_time'], 2)
 		self.assertEquals(order1['barista_id'], 1)
 		
 		order2 = data[1]
-		self.assertEquals(order2['order_id'], 2)
-		self.assertEquals(order2['start_time'], 2)
-		self.assertEquals(order2['barista_id'], 2)
+		self.assertEquals(order2['order_id'], 1)
+		self.assertEquals(order2['start_time'], 0)
+		self.assertEquals(order2['barista_id'], 1)
 
 	#test is in optimize_test4
 	def test_first_order_time_is_first_and_order_is_slower_than_second_order(self):

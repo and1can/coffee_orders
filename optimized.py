@@ -22,37 +22,24 @@ def getBarista(t1, t2):
 
 #return the longer of the two orders as first value of tuple and second value of tuple as the other order
 def order_pair(o1, o2):
-	if (drink_map[o1['type']][0] > drink_map[o2['type']][0]):
+	if (drink_map[o1['type']][0] >= drink_map[o2['type']][0]):
 		return (o1, o2)
 	else:
 		return (o2, o1)
 
-#def process(d1, d2, alternate_bool):
-	#print('processing: ', d1, d2)
-#	d1_wait = drink_map[d1['type']][0]
-#	d2_wait = drink_map[d2['type']][0]
-#	if (d1_wait <= d2_wait):
-#		if (alternate_bool):
-#			return (d2, d1)
-#		else:
-#			return (d1, d2)
-#	else:
-#		if (alternate_bool):
-#			return (d1, d2)
-#		else:
-#			return (d2, d1)
 
 
-
+#outputs a tuple where first value is the order for barista1 and 2nd value is order for barista2
 def process(d1, d2):
 	#print('processing: ', d1, d2)
 	d1_wait = drink_map[d1['type']][0]
 	d2_wait = drink_map[d2['type']][0]
-	long_order, short_order = order_pair(d1, d2)
+	#print('d1_wait', d1_wait, 'd2_wait', d2_wait)
+	#long_order, short_order = order_pair(d1, d2)
 	if (d1_wait <= d2_wait):
-		return (long_order, short_order)
+		return (d2, d1)
 	else:
-		return (short_order, long_order)
+		return (d1, d2)
 
 #returns the startTime
 #b is the start time of the barista
@@ -110,7 +97,7 @@ def optimize(input_filename):
 		offset += 1
 		#barista1_order, barista2_order = process(d1, d2, alternate_bool)
 		barista1_order, barista2_order = process(d1, d2)
-		alternate_bool = not alternate_bool
+		#alternate_bool = not alternate_bool
 		b1_order_time = drink_map[barista1_order['type']][0]
 		b2_order_time = drink_map[barista2_order['type']][0]
 

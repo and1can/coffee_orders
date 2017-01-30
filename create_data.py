@@ -8,7 +8,7 @@ from collections import Counter
 
 import sys
 
-order_times = np.random.poisson(50, 47)
+order_times = np.random.poisson(35, 47)
 
 count, bins, ignored = plt.hist(order_times, 14, normed=False)
 
