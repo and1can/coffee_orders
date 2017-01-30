@@ -1,3 +1,10 @@
-p1.json is an input distribution genreated with poisson average 50, sample size of 47 and probability of each type of drink with 1/3
+can view each of the destributions by typing: 
+	python valid_dist.py p1
 
-p2.json is an input distribution genreated with poisson average 50, sample size of 47 and probability of tea ordered as 2/6, latte ordered 3/6, and affogato ordered as 1/6
+	(to view distribution of time of orders as x axis and counts as y axis)
+
+p1.json is an input distribution generated with poisson average 50, sample size of 47 and probability of each type of drink with 1/3
+
+p2.json is an input distribution generated with poisson average 50, sample size of 47 and probability of tea ordered as 2/6, latte ordered 3/6, and affogato ordered as 1/6
+
+p3.json is an input distribution generated with poisson average 30, sample size of 47 and probability of tea as 2/6, latte as 3/6, and affogato as 1/6. 
