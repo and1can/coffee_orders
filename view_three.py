@@ -87,46 +87,47 @@ def view_three(input_filename):
 
 	#need to store because length needed for metric calculation
 	dataLength = len(data)
-	for i in range(len(data) / 3):
-		o1 = data[0]
-		o2 = data[1]
-		o3 = data[2]
-		fast, med, slow = sort_orders(o1, o2, o3)
-		barista, b_time = getBarista(b1_time, b2_time)
+	if (dataLength >= 3):
+		for i in range(len(data) / 3):
+			o1 = data[0]
+			o2 = data[1]
+			o3 = data[2]
+			fast, med, slow = sort_orders(o1, o2, o3)
+			barista, b_time = getBarista(b1_time, b2_time)
 		
-		#make these two chunks into a helper function called processOrder
-		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, fast, \
-			wait_time, profit, num_of_orders)
-		if (valid):
-			retData.append(output)
-			metricData.append(order)
-			if (barista == 1):
-				b1_time = b_time
-			else:
-				b2_time = b_time
+			#make these two chunks into a helper function called processOrder
+			valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, fast, \
+				wait_time, profit, num_of_orders)
+			if (valid):
+				retData.append(output)
+				metricData.append(order)
+				if (barista == 1):
+					b1_time = b_time
+				else:
+					b2_time = b_time
 
-		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, med, \
-			wait_time, profit, num_of_orders)
-		if (valid):
-			retData.append(output)
-			metricData.append(order)
-			if (barista == 1):
-				b1_time = b_time
-			else:
-				b2_time = b_time
+			valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, med, \
+				wait_time, profit, num_of_orders)
+			if (valid):
+				retData.append(output)
+				metricData.append(order)
+				if (barista == 1):
+					b1_time = b_time
+				else:
+					b2_time = b_time
 
-		valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, slow, \
-			wait_time, profit, num_of_orders)
-		if (valid):
-			retData.append(output)
-			metricData.append(order)
-			if (barista == 1):
-				b1_time = b_time
-			else:
-				b2_time = b_time
+			valid, output, wait_time, profit, num_of_orders, b_time, order = processOrder(b_time, barista, slow, \
+				wait_time, profit, num_of_orders)
+			if (valid):
+				retData.append(output)
+				metricData.append(order)
+				if (barista == 1):
+					b1_time = b_time
+				else:
+					b2_time = b_time
 		
 		
-		data = data[3::]
+			data = data[3::]
 
 	#greedily process remainder 
 	for i in range(len(data)):
