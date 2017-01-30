@@ -4,8 +4,6 @@ import numpy as np
 
 import json
 
-from collections import Counter
-
 import sys
 
 order_times = np.random.poisson(35, 47)
