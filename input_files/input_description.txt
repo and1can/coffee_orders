@@ -1,4 +1,4 @@
-can view each of the destributions by typing: 
+can view each of the distributions by typing: 
 	python valid_dist.py p1
 
 	(to view distribution of time of orders as x axis and counts as y axis)
