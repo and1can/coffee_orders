@@ -1,0 +1,7 @@
+[
+    { "order_id": 1, "order_time": 97, "type": "affogato" },
+    { "order_id": 2, "order_time": 97, "type": "tea" },
+    { "order_id": 3, "order_time": 98, "type": "latte" },
+    { "order_id": 4, "order_time": 98, "type": "tea" },
+    { "order_id": 5, "order_time": 98, "type":"latte"}
+]
