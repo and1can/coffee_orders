@@ -88,7 +88,7 @@ def view_three(input_filename):
 	#need to store because length needed for metric calculation
 	dataLength = len(data)
 	if (dataLength >= 3):
-		for i in range(len(data) / 3):
+		for i in range(int(len(data) / 3)):
 			o1 = data[0]
 			o2 = data[1]
 			o3 = data[2]
